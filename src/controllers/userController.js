@@ -10,9 +10,9 @@ const getUsersFromFile = () => {
 
 exports.getUsers = async (req, res, next) => {
 
-    const users = getUsersFromFile();
-    throw new Error('my Nodejs - Express Error');
+    const users = getUsersFromFilL();
     res.json(users);
+
 
 };
 
