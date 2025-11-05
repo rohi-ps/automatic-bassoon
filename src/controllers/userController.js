@@ -9,13 +9,11 @@ const getUsersFromFile = () => {
 };
 
 exports.getUsers = async (req, res, next) => {
-  try{
+
     const users = getUsersFromFile();
     throw new Error('my Nodejs - Express Error');
     res.json(users);
-  }catch(err){
-    next(err)
-  }
+
 };
 
 exports.getUserByID = async (req, res) => {
