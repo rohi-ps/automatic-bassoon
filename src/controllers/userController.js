@@ -9,11 +9,22 @@ const getUsersFromFile = () => {
 };
 
 exports.getUsers = async (req, res, next) => {
-
-    const users = getUsersFromFilL();
-    res.json(users);
-
-
+    try {
+        const { role, name } = req.query;
+        const users = getUsersFromFilL();
+        
+        let filteredUsers = users;
+        if (role) {
+            filteredUsers = filteredUsers.filter(user => user.role === role);
+        }
+        if (name) {
+            filteredUsers = filteredUsers.filter(user => user.name.toLowerCase().includes(name.toLowerCase()));
+        }
+        
+        res.json(filteredUsers);
+    } catch (error) {
+        next(error);
+    }
 };
 
 exports.getUserByID = async (req, res) => {
